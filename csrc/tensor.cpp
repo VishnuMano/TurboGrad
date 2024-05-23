@@ -17,7 +17,7 @@ typedef struct
 
 Tensor* create_tensor(float* p_data, int* p_shape, int p_ndim) 
 {
-	Tensor* tensor = (Tensor*)malloc(sizeof(Tesnor));
+	Tensor* tensor = (Tensor*)malloc(sizeof(Tensor));
 	if(tensor == NULL) 
 	{
 		fprintf(stderr, "Memory allocation error\n");
@@ -28,22 +28,22 @@ Tensor* create_tensor(float* p_data, int* p_shape, int p_ndim)
 	tensor->ndim = p_ndim;
 	tensor->size = 1;
 	
-	for (int i = 0; i < ndim; i++) 
+	for (int i = 0; i < p_ndim; i++) 
 	{
-		tensor->size *= shape[i];
+		tensor->size *= p_shape[i];
 	}
 
-	tensor->strides = (int*)malloc(ndim * sizeof(int));
+	tensor->strides = (int*)malloc(p_ndim * sizeof(int));
 	if(tensor->strides == NULL) 
 	{
 		fprintf(stderr, "Memory allocation error\n");
 		exit(1);
 	}
 	int stride = 1;
-	for(int i=ndim-1; i>=0; i--) 
+	for(int i= p_ndim-1; i >= 0; i--) 
 	{
 		tensor->strides[i] = stride;
-		stride *= shape[i];
+		stride *= p_shape[i];
 	}
 
 	return tensor;
@@ -53,12 +53,12 @@ Tensor* create_tensor(float* p_data, int* p_shape, int p_ndim)
 float get_item(Tensor* p_tensor, int* p_indices)
 {
 	int index = 0;
-	for(int i = 0; i < tensor->ndim; i++) 
+	for(int i = 0; i < p_tensor->ndim; i++) 
 	{
-		index += indices[i] * tensor->strides[i];
+		index += p_indices[i] * p_tensor->strides[i];
 	}
 	float result;
-	result = tensor->data[index];
+	result = p_tensor->data[index];
 	
 	return result;
 }
