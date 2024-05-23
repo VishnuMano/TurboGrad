@@ -4,7 +4,7 @@ A lightweight tensor library for deep learning on Edge Devices with GPU support 
 ## DevNote:
 stride[k] = Π(i=K+1 -> N-1) shape[i]
 
-# Inpsiration:
+## Inpsiration:
 https://github.com/karpathy/micrograd
 https://github.com/tinygrad/tinygrad
 https://github.com/alibaba/MNN
