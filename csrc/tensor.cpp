@@ -5,7 +5,7 @@
 #include <string.h>
 #include <math.h>
 
-typedef struct 
+typedef struct
 {
 	float* data;
 	int* strides;
